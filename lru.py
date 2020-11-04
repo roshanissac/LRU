@@ -9,6 +9,6 @@ class lruCache:
 
 
 #Initializing cache with max size
-cache=lruCache(2)
+cache=lruCache(3)
 print(cache.size)
 
