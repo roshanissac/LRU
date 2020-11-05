@@ -18,3 +18,24 @@ it will remove the item with the given key  if the key exists in the cache, othe
 ### reset()
 it will clear all the items from the cache.
 
+## Running Examples 
+
+## Executing Unit Tests
+
+I have used unittest unit testing framework to execute test cases. The file unit_test_cases.py consists of the test cases and it can be run from the terminal/command prompt like below.
+```
+python unit_test_cases.py
+```
+or
+```
+python -m unittest unit_test_cases.py
+```
+or
+```
+python -m unittest unit_test_cases.MyTestCase
+```
+Also even we can execute each unit cases separately like,
+```
+python -m unittest unit_test_cases.MyTestCase.test_1
+```
+
