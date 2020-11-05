@@ -94,7 +94,7 @@ A full working example is given in the file sample.py and can be executed in pyt
 ```
 python sample.py
 ```
-and it outputs
+and it outputs,
 ```
 OrderedDict([(1,1)])
 OrderedDict([(1, 1), (2, 2)])
