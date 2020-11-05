@@ -25,6 +25,8 @@ class lruCache:
             raise DuplicateKey
 
 
+    def reset(self):
+    	self.cache.clear()
 
 
 #Initializing cache with max size
