@@ -27,6 +27,13 @@ class lruCache:
         else:
             raise DuplicateKey
 
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            raise KeyNotExist
+        else:
+            self.cache.move_to_end(key)
+            return self.cache[key]
+
 
     def reset(self):
     	self.cache.clear()
@@ -45,7 +52,7 @@ try:
     cache = lruCache(2)
     cache.put(1, 1)
     print(cache.cache)    
-    cache.delete(2)
+    cache.get(2)
     print(cache.cache)
 except ValidSize:
     print("Please enter a valid size")
