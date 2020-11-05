@@ -21,20 +21,7 @@ class lruCache:
         else:
             raise ValidSizeError # raising error if invalid value for the size variable
 
-'''put method is will get the key and value to be inserted and it will move the new item to the end of the dictionary and if the size of the cache 
-exceeds the maximum size it will remove the least recently used item,which will be the first element of the dictionary.If we are inserting a duplicate key
-then DuplicateKeyError exception is raised.
-'''
-    def put(self, key,value):
-
-    	if key not in self.cache:
-    		self.cache[key] = value
-    		self.cache.move_to_end(key)
-    		if len(self.cache) > self.size:
-    			self.cache.popitem(last = False)
-    	else:
-        	raise DuplicateKeyError
-'''get method will return the value of the key passed and it also moves that item to the end of the dictionary as it was recently used.If the key passed doesnt
+    '''get method will return the value of the key passed and it also moves that item to the end of the dictionary as it was recently used.If the key passed doesnt
 exist in the dictionary it will raise KeyNotExistError exception
 
 '''
@@ -44,6 +31,21 @@ exist in the dictionary it will raise KeyNotExistError exception
         else:
             self.cache.move_to_end(key)
             return self.cache[key]
+
+    '''put method is will get the key and value to be inserted and it will move the new item to the end of the dictionary and if the size of the cache 
+exceeds the maximum size it will remove the least recently used item,which will be the first element of the dictionary.If we are inserting a duplicate key
+then DuplicateKeyError exception is raised.
+
+'''
+    def put(self, key,value):
+    	if key not in self.cache:
+    		self.cache[key] = value
+    		self.cache.move_to_end(key)
+    		if len(self.cache) > self.size:
+    			self.cache.popitem(last = False)
+    	else:
+        	raise DuplicateKeyError
+
 
 
     def reset(self):
