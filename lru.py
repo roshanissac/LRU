@@ -1,12 +1,12 @@
 from collections import OrderedDict
 
-class ValidSize(Exception): 
+class ValidSizeError(Exception): 
     pass
 
-class DuplicateKey(Exception): 
+class DuplicateKeyError(Exception): 
     pass
 
-class KeyNotExist(Exception): 
+class KeyNotExistError(Exception): 
     pass
 
 class lruCache:
@@ -15,21 +15,22 @@ class lruCache:
         if isinstance(size,int) and size > 0:
         	self.size = size
         else:
-            raise ValidSize
+            raise ValidSizeError
 
 
-    def put(self, key: int, value: int) -> None:
+    def put(self, key,value):
+
+    	if key not in self.cache:
+    		self.cache[key] = value
+    		self.cache.move_to_end(key)
+    		if len(self.cache) > self.size:
+    			self.cache.popitem(last = False)
+    	else:
+        	raise DuplicateKeyError
+
+    def get(self, key):
         if key not in self.cache:
-            self.cache[key] = value
-            self.cache.move_to_end(key)
-            if len(self.cache) > self.size:
-                self.cache.popitem(last = False)
-        else:
-            raise DuplicateKey
-
-    def get(self, key: int) -> int:
-        if key not in self.cache:
-            raise KeyNotExist
+            raise KeyNotExistError
         else:
             self.cache.move_to_end(key)
             return self.cache[key]
@@ -39,24 +40,11 @@ class lruCache:
     	self.cache.clear()
 
 
-    def delete(self, key: int) -> int:
+    def delete(self, key):
         if key not in self.cache:
-            raise KeyNotExist
+            return -1
         else:
             self.cache.pop(key)
 
 
-#Initializing cache with max size
 
-try:
-    cache = lruCache(2)
-    cache.put(1, 1)
-    print(cache.cache)    
-    cache.get(2)
-    print(cache.cache)
-except ValidSize:
-    print("Please enter a valid size")
-except DuplicateKey:
-    print("Key already exists,Please enter a new key!")
-except KeyNotExist:
-    print("The key not exist or the cache is empty")
