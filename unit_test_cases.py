@@ -2,20 +2,6 @@ import unittest
 from collections import OrderedDict
 from lru import lruCache,KeyNotExistError,DuplicateKeyError,ValidSizeError
 
-'''
-try:
-    cache = lruCache(2)
-    cache.put(1, 1)
-    print(cache.cache)    
-    cache.get(2)
-    print(cache.cache)
-except ValidSize:
-    print("Please enter a valid size")
-except DuplicateKey:
-    print("Key already exists,Please enter a new key!")
-except KeyNotExist:
-    print("The key not exist or the cache is empty")
-'''
 class MyTestCase(unittest.TestCase): 
   
    # Returns true if lruCache(-2) raises a ValidSizeError 
@@ -37,19 +23,6 @@ class MyTestCase(unittest.TestCase):
    def test_4(self): 
       with self.assertRaises(Exception): 
         lruCache(5.67) # Passing float value as the size of the cache
-
-   # # Returns true if it raises a KeyNotExistError 
-   # def test_5(self): 
-   #    with self.assertRaises(Exception): 
-   #      cache=lruCache(2) # Setting the size 
-   #      cache.delete(1) # deleting an item without even adding it
-
-   # # Returns true if it raises a KeyNotExistError 
-   # def test_6(self): 
-   #    with self.assertRaises(Exception): 
-   #      cache=lruCache(2) # Setting the size 
-   #      cache.put(1,1)
-   #      cache.delete(2) # deleting key that doesnt exist
 
    # Returns true if it raises a DuplicateKeyError 
    def test_5(self): 
@@ -126,7 +99,6 @@ class MyTestCase(unittest.TestCase):
    	self.result=cache.cache
    	self.expected=OrderedDict()# empty dictionary
    	self.assertDictEqual(self.result,self.expected)
-
 
    	# Trying to reset without adding any elements
    def test_12(self):
